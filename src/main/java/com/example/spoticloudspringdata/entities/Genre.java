@@ -7,24 +7,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "genre")
-public class Genre {
-
-    private int id;
+public class Genre extends BaseEntity{
     private String name;
     private Integer parentGenreId;
     private Set<Track> tracks;
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "name")

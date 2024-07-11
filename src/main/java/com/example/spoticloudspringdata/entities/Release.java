@@ -6,24 +6,14 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-public class Release {
-    private int id;
+public class Release extends BaseEntity{
     private String name;
     private Date dateReleased;
     private String language;
     private String type;
     private int genreId;
     private String description;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
     @Basic
     @Column(name = "name")
     public String getName() {

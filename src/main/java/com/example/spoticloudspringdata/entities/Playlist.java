@@ -5,25 +5,12 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "playlist")
-public class Playlist {
-
-    private int id;
+public class Playlist extends BaseEntity{
     private String name;
     private int ownerId;
     private boolean isPrivate;
     private Timestamp dateCreated;
     private String description;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Column(name = "name", nullable = false)
     public String getName() {

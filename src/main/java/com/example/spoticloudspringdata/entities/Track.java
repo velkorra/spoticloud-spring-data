@@ -5,9 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "track")
-public class Track {
-
-    private int id;
+public class Track extends BaseEntity{
     private String name;
     private String language;
     private String type;
@@ -17,17 +15,6 @@ public class Track {
     private int duration;
     private Boolean explicit;
     private Genre genre;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "name")

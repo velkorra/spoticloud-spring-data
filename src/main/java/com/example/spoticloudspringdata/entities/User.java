@@ -7,23 +7,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User {
-    private int id;
+public class User extends BaseEntity{
     private String username;
     private String email;
     private String password;
     private Timestamp dateRegistered;
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "username")

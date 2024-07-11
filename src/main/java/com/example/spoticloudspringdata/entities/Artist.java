@@ -4,25 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "artist")
-public class Artist {
-
-    private int id;
+public class Artist extends BaseEntity{
     private String name;
     private String type;
     private String description;
     private String country;
     private int genreId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Column(name = "name", nullable = false)
     public String getName() {

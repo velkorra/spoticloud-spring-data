@@ -1,6 +1,6 @@
 package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.entities.compositeId.UserPlaylistID;
+import com.example.spoticloudspringdata.entities.compositeId.UserPlaylistId;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -9,11 +9,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_playlist")
 public class UserPlaylist {
-    private UserPlaylistID id;
+    private UserPlaylistId id;
     private Timestamp dateAdded;
 
 
-    public UserPlaylist(UserPlaylistID id) {
+    public UserPlaylist(UserPlaylistId id) {
         this.id = id;
     }
 
@@ -22,10 +22,10 @@ public class UserPlaylist {
     }
 
     @EmbeddedId
-    public UserPlaylistID getId() {
+    public UserPlaylistId getId() {
         return id;
     }
-    public void setId(UserPlaylistID id) {
+    public void setId(UserPlaylistId id) {
         this.id = id;
     }
 

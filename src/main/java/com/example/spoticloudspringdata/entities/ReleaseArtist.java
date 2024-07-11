@@ -1,14 +1,14 @@
 package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.entities.compositeId.ReleaseArtistID;
+import com.example.spoticloudspringdata.entities.compositeId.ReleaseArtistId;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "release_artist")
 public class ReleaseArtist {
-    private ReleaseArtistID id;
+    private ReleaseArtistId id;
 
-    public ReleaseArtist(ReleaseArtistID id) {
+    public ReleaseArtist(ReleaseArtistId id) {
         this.id = id;
     }
 
@@ -17,11 +17,11 @@ public class ReleaseArtist {
     }
 
     @EmbeddedId
-    public ReleaseArtistID getId() {
+    public ReleaseArtistId getId() {
         return id;
     }
 
-    public void setId(ReleaseArtistID id) {
+    public void setId(ReleaseArtistId id) {
         this.id = id;
     }
 

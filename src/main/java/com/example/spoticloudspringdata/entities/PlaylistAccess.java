@@ -1,14 +1,14 @@
 package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.entities.compositeId.PlaylistAccessID;
+import com.example.spoticloudspringdata.entities.compositeId.PlaylistAccessId;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "playlist_access")
 public class PlaylistAccess {
-    private PlaylistAccessID id;
+    private PlaylistAccessId id;
 
-    public PlaylistAccess(PlaylistAccessID id) {
+    public PlaylistAccess(PlaylistAccessId id) {
         this.id = id;
     }
 
@@ -17,11 +17,11 @@ public class PlaylistAccess {
     }
 
     @EmbeddedId
-    public PlaylistAccessID getId() {
+    public PlaylistAccessId getId() {
         return id;
     }
 
-    public void setId(PlaylistAccessID id) {
+    public void setId(PlaylistAccessId id) {
         this.id = id;
     }
 }

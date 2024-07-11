@@ -7,15 +7,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class UserPlaylistID implements Serializable {
+public class UserPlaylistId implements Serializable {
     @Column(name = "user_id")
     private int userId;
     @Column(name = "playlist_id")
     private int playlistId;
 
-    public UserPlaylistID() {}
+    public UserPlaylistId() {}
 
-    public UserPlaylistID(int userId, int playlistId) {
+    public UserPlaylistId(int userId, int playlistId) {
         this.userId = userId;
         this.playlistId = playlistId;
     }
@@ -40,7 +40,7 @@ public class UserPlaylistID implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserPlaylistID that = (UserPlaylistID) o;
+        UserPlaylistId that = (UserPlaylistId) o;
         return userId == that.userId && playlistId == that.playlistId;
     }
 

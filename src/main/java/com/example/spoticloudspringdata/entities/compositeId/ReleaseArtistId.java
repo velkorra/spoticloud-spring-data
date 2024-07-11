@@ -7,16 +7,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class ReleaseArtistID implements Serializable {
+public class ReleaseArtistId implements Serializable {
     @Column(name = "user_id")
     private int artistId;
     @Column(name = "release_id")
     private int releaseId;
 
-    public ReleaseArtistID() {
+    public ReleaseArtistId() {
     }
 
-    public ReleaseArtistID(int artistId, int releaseId) {
+    public ReleaseArtistId(int artistId, int releaseId) {
         this.artistId = artistId;
         this.releaseId = releaseId;
     }
@@ -41,7 +41,7 @@ public class ReleaseArtistID implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ReleaseArtistID that = (ReleaseArtistID) o;
+        ReleaseArtistId that = (ReleaseArtistId) o;
         return artistId == that.artistId && releaseId == that.releaseId;
     }
 

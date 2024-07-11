@@ -11,7 +11,6 @@ public class UserPreferences {
     private UserPreferencesId id;
     private float value;
 
-
     public UserPreferences(UserPreferencesId id, float value) {
         this.id = id;
         this.value = value;
@@ -38,7 +37,6 @@ public class UserPreferences {
     public void setValue(float value) {
         this.value = value;
     }
-
 
     @Override
     public boolean equals(Object o) {

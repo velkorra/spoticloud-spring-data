@@ -4,15 +4,32 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-public class Release extends BaseEntity{
+public class Release extends BaseEntity {
     private String name;
     private Date dateReleased;
     private String language;
     private String type;
     private int genreId;
     private String description;
+    private Genre genre;
+    private Set<ReleaseArtist> releaseArtists;
+
+    public Release(String name, Date dateReleased, String language, String type, int genreId, String description, Genre genre) {
+        this.name = name;
+        this.dateReleased = dateReleased;
+        this.language = language;
+        this.type = type;
+        this.genreId = genreId;
+        this.description = description;
+        this.genre = genre;
+    }
+
+    protected Release() {
+
+    }
 
     @Basic
     @Column(name = "name")
@@ -23,6 +40,7 @@ public class Release extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
+
     @Basic
     @Column(name = "date_released")
     public Date getDateReleased() {
@@ -32,6 +50,7 @@ public class Release extends BaseEntity{
     public void setDateReleased(Date dateReleased) {
         this.dateReleased = dateReleased;
     }
+
     @Basic
     @Column(name = "language")
     public String getLanguage() {
@@ -41,6 +60,7 @@ public class Release extends BaseEntity{
     public void setLanguage(String language) {
         this.language = language;
     }
+
     @Basic
     @Column(name = "type")
     public String getType() {
@@ -50,15 +70,7 @@ public class Release extends BaseEntity{
     public void setType(String type) {
         this.type = type;
     }
-    @Basic
-    @Column(name = "genre_id")
-    public int getGenreId() {
-        return genreId;
-    }
 
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
     @Basic
     @Column(name = "description")
     public String getDescription() {
@@ -68,6 +80,26 @@ public class Release extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id", referencedColumnName = "id")
+    public Genre getGenre() {
+        return genre;
+    }
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    @OneToMany(mappedBy = "release")
+    public Set<ReleaseArtist> getReleaseArtists() {
+        return releaseArtists;
+    }
+
+    public void setReleaseArtists(Set<ReleaseArtist> releaseArtists) {
+        this.releaseArtists = releaseArtists;
+    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -16,6 +16,22 @@ public class Track extends BaseEntity{
     private Boolean explicit;
     private Genre genre;
 
+    public Track(String name, String language, String type, int artistId, int genreId, Integer releaseId, int duration, Boolean explicit, Genre genre) {
+        this.name = name;
+        this.language = language;
+        this.type = type;
+        this.artistId = artistId;
+        this.genreId = genreId;
+        this.releaseId = releaseId;
+        this.duration = duration;
+        this.explicit = explicit;
+        this.genre = genre;
+    }
+
+    protected Track() {
+
+    }
+
     @Basic
     @Column(name = "name")
     public String getName() {
@@ -87,7 +103,7 @@ public class Track extends BaseEntity{
     }
 
     @ManyToOne
-    @JoinColumn(name = "genre_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "genre_id", referencedColumnName = "id")
     public Genre getGenre() {
         return genre;
     }

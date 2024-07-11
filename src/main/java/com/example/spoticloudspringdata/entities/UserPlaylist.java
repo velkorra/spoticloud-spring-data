@@ -11,6 +11,7 @@ import java.util.Objects;
 public class UserPlaylist {
     private UserPlaylistId id;
     private Timestamp dateAdded;
+    private User user;
 
 
     public UserPlaylist(UserPlaylistId id) {
@@ -37,6 +38,16 @@ public class UserPlaylist {
 
     public void setDateAdded(Timestamp dateAdded) {
         this.dateAdded = dateAdded;
+    }
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

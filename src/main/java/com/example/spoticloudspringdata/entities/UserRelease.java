@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_release")
@@ -11,6 +12,8 @@ import java.util.Objects;
 public class UserRelease {
     private int userId;
     private int releaseId;
+    private User user;
+    private Release release;
 
     @Id
     @Column(name = "user_id")
@@ -43,6 +46,28 @@ public class UserRelease {
 
     public void setDateAdded(Timestamp dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne
+    @MapsId("releaseId")
+    @JoinColumn(name = "release_id", referencedColumnName = "id")
+    public Release getRelease() {
+        return release;
+    }
+
+    public void setRelease(Release release) {
+        this.release = release;
     }
 
     @Override

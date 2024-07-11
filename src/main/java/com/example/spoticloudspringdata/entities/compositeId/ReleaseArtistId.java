@@ -8,12 +8,12 @@ import java.util.Objects;
 
 @Embeddable
 public class ReleaseArtistId implements Serializable {
-    @Column(name = "user_id")
+    @Column(name = "artist_id")
     private int artistId;
     @Column(name = "release_id")
     private int releaseId;
 
-    public ReleaseArtistId() {
+    protected ReleaseArtistId() {
     }
 
     public ReleaseArtistId(int artistId, int releaseId) {

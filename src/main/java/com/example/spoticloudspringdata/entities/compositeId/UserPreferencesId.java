@@ -10,7 +10,7 @@ import java.util.Objects;
 public class UserPreferencesId implements Serializable {
     @Column(name = "user_id")
     private int userId;
-    @Column(name = "playlist_id")
+    @Column(name = "genre_id")
     private int genreId;
 
     public UserPreferencesId() {

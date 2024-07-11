@@ -10,6 +10,8 @@ import java.util.Objects;
 public class UserPreferences {
     private UserPreferencesId id;
     private float value;
+    private User user;
+    private Genre genre;
 
     public UserPreferences(UserPreferencesId id, float value) {
         this.id = id;
@@ -18,6 +20,27 @@ public class UserPreferences {
 
     protected UserPreferences() {
 
+    }
+
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne
+    @MapsId("genreId")
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     @EmbeddedId

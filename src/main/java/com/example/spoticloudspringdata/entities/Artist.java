@@ -2,6 +2,8 @@ package com.example.spoticloudspringdata.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "artist")
 public class Artist extends BaseEntity{
@@ -10,7 +12,22 @@ public class Artist extends BaseEntity{
     private String description;
     private String country;
     private int genreId;
+    private Genre genre;
+    private Set<ReleaseArtist> releaseArtists;
 
+    public Artist(String name, String type, String description, String country, int genreId, Genre genre, Set<ReleaseArtist> releaseArtists) {
+        this.name = name;
+        this.type = type;
+        this.description = description;
+        this.country = country;
+        this.genreId = genreId;
+        this.genre = genre;
+        this.releaseArtists = releaseArtists;
+    }
+
+    protected Artist() {
+
+    }
 
     @Column(name = "name", nullable = false)
     public String getName() {
@@ -48,13 +65,22 @@ public class Artist extends BaseEntity{
         this.country = country;
     }
 
-    @Column(name = "genre_id", nullable = false)
-    public int getGenreId() {
-        return genreId;
+    @ManyToOne
+    @JoinColumn(name = "genre_id", referencedColumnName = "id")
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
+    @OneToMany(mappedBy = "artist")
+    public Set<ReleaseArtist> getReleaseArtists() {
+        return releaseArtists;
+    }
+
+    public void setReleaseArtists(Set<ReleaseArtist> releaseArtists) {
+        this.releaseArtists = releaseArtists;
+    }
 }

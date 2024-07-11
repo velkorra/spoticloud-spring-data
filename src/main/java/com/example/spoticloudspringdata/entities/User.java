@@ -1,17 +1,36 @@
 package com.example.spoticloudspringdata.entities;
 
+import com.example.spoticloudspringdata.entities.compositeId.UserReleaseId;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     private String username;
     private String email;
     private String password;
     private Timestamp dateRegistered;
+    private Set<UserPlaylist> userPlaylists;
+    private Set<UserRelease> userReleases;
+    private Set<UserPreferences> userPreferences;
+
+    public User(String username, String email, String password, Timestamp dateRegistered, Set<UserPlaylist> userPlaylists, Set<UserRelease> userReleases, Set<UserPreferences> userPreferences) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.dateRegistered = dateRegistered;
+        this.userPlaylists = userPlaylists;
+        this.userReleases = userReleases;
+        this.userPreferences = userPreferences;
+    }
+
+    protected User() {
+
+    }
 
     @Basic
     @Column(name = "username")
@@ -51,6 +70,33 @@ public class User extends BaseEntity{
 
     public void setDateRegistered(Timestamp dateRegistered) {
         this.dateRegistered = dateRegistered;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<UserPlaylist> getUserPlaylists() {
+        return userPlaylists;
+    }
+
+    public void setUserPlaylists(Set<UserPlaylist> userPlaylists) {
+        this.userPlaylists = userPlaylists;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<UserRelease> getUserReleases() {
+        return userReleases;
+    }
+
+    public void setUserReleases(Set<UserRelease> userReleases) {
+        this.userReleases = userReleases;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<UserPreferences> getUserPreferences() {
+        return userPreferences;
+    }
+
+    public void setUserPreferences(Set<UserPreferences> userPreferences) {
+        this.userPreferences = userPreferences;
     }
 
     @Override

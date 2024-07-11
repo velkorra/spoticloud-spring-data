@@ -11,6 +11,19 @@ public class Genre extends BaseEntity{
     private String name;
     private Integer parentGenreId;
     private Set<Track> tracks;
+    private Set<Release> releases;
+    private Set<Artist> artists;
+
+    public Genre(String name, Integer parentGenreId, Set<Track> tracks, Set<Release> releases) {
+        this.name = name;
+        this.parentGenreId = parentGenreId;
+        this.tracks = tracks;
+        this.releases = releases;
+    }
+
+    protected Genre() {
+
+    }
 
     @Basic
     @Column(name = "name")
@@ -39,6 +52,25 @@ public class Genre extends BaseEntity{
 
     public void setTracks(Set<Track> tracks) {
         this.tracks = tracks;
+    }
+
+
+    @OneToMany(mappedBy = "genre")
+    public Set<Release> getReleases() {
+        return releases;
+    }
+
+    public void setReleases(Set<Release> releases) {
+        this.releases = releases;
+    }
+
+    @OneToMany(mappedBy = "genre")
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 
     @Override

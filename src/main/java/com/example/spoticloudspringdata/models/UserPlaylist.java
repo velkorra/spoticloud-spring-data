@@ -8,32 +8,27 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_playlist")
-@IdClass(UserPlaylistID.class)
 public class UserPlaylist {
-
-    private int userId;
-    private int playlistId;
+    private UserPlaylistID id;
     private Timestamp dateAdded;
 
-    @Id
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
-        return userId;
+
+    public UserPlaylist(UserPlaylistID id) {
+        this.id = id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    protected UserPlaylist() {
+
     }
 
-    @Id
-    @Column(name = "playlist_id", nullable = false)
-    public int getPlaylistId() {
-        return playlistId;
+    @EmbeddedId
+    public UserPlaylistID getId() {
+        return id;
+    }
+    public void setId(UserPlaylistID id) {
+        this.id = id;
     }
 
-    public void setPlaylistId(int playlistId) {
-        this.playlistId = playlistId;
-    }
 
     @Column(name = "date_added", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     public Timestamp getDateAdded() {
@@ -49,11 +44,11 @@ public class UserPlaylist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserPlaylist that = (UserPlaylist) o;
-        return userId == that.userId && playlistId == that.playlistId;
+        return Objects.equals(id, that.id) && Objects.equals(dateAdded, that.dateAdded);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, playlistId);
+        return Objects.hash(id, dateAdded);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.spoticloudspringdata.models;
 
+import com.example.spoticloudspringdata.models.compositeId.UserPlaylistID;
 import com.example.spoticloudspringdata.models.compositeId.UserPreferencesId;
 import jakarta.persistence.*;
 
@@ -7,31 +8,27 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_preferences")
-@IdClass(UserPreferencesId.class)
 public class UserPreferences {
-
-    private int userId;
-    private int genreId;
+    private UserPreferencesId id;
     private float value;
 
-    @Id
-    @Column(name = "user_id")
-    public int getUserId() {
-        return userId;
+
+    public UserPreferences(UserPreferencesId id, float value) {
+        this.id = id;
+        this.value = value;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    protected UserPreferences() {
+
     }
 
-    @Id
-    @Column(name = "genre_id")
-    public int getGenreId() {
-        return genreId;
+    @EmbeddedId
+    public UserPreferencesId getId() {
+        return id;
     }
 
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
+    public void setId(UserPreferencesId id) {
+        this.id = id;
     }
 
     @Column(name = "value", nullable = false, columnDefinition = "real DEFAULT 0")
@@ -44,17 +41,16 @@ public class UserPreferences {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserPreferences that = (UserPreferences) o;
-        return userId == that.userId && genreId == that.genreId;
+        return Float.compare(value, that.value) == 0 && Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, genreId);
+        return Objects.hash(id, value);
     }
 }

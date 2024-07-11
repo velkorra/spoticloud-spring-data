@@ -1,4 +1,4 @@
-package com.example.spoticloudspringdata.models;
+package com.example.spoticloudspringdata.models.compositeId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -21,4 +21,19 @@ public class UserReleaseID implements Serializable {
         this.releaseId = releaseId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getReleaseId() {
+        return releaseId;
+    }
+
+    public void setReleaseId(int releaseId) {
+        this.releaseId = releaseId;
+    }
 }

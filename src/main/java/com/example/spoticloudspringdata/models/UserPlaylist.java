@@ -1,8 +1,8 @@
 package com.example.spoticloudspringdata.models;
 
-import com.example.spoticloudspringdata.models.UserPlaylistID;
+import com.example.spoticloudspringdata.models.compositeId.UserPlaylistID;
 import jakarta.persistence.*;
-import java.io.Serializable;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 

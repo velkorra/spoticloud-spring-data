@@ -1,4 +1,4 @@
-package com.example.spoticloudspringdata.models;
+package com.example.spoticloudspringdata.models.compositeId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -21,5 +21,19 @@ public class UserPreferencesId implements Serializable {
         this.genreId = genreId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
+    }
 }

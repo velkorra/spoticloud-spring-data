@@ -1,7 +1,8 @@
 package com.example.spoticloudspringdata.models;
 
+import com.example.spoticloudspringdata.models.compositeId.ReleaseArtistID;
 import jakarta.persistence.*;
-import java.io.Serializable;
+
 import java.util.Objects;
 
 @Entity

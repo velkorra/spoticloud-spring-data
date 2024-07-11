@@ -36,4 +36,17 @@ public class ReleaseArtistID implements Serializable {
     public void setArtistId(int artistId) {
         this.artistId = artistId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReleaseArtistID that = (ReleaseArtistID) o;
+        return artistId == that.artistId && releaseId == that.releaseId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(artistId, releaseId);
+    }
 }

@@ -36,4 +36,17 @@ public class UserPreferencesId implements Serializable {
     public void setGenreId(int genreId) {
         this.genreId = genreId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPreferencesId that = (UserPreferencesId) o;
+        return userId == that.userId && genreId == that.genreId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, genreId);
+    }
 }

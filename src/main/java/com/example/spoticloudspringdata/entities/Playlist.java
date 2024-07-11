@@ -1,4 +1,4 @@
-package com.example.spoticloudspringdata.models;
+package com.example.spoticloudspringdata.entities;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;

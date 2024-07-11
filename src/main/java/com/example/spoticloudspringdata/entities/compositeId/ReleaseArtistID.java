@@ -1,4 +1,4 @@
-package com.example.spoticloudspringdata.models.compositeId;
+package com.example.spoticloudspringdata.entities.compositeId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

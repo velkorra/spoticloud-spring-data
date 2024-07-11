@@ -1,7 +1,6 @@
-package com.example.spoticloudspringdata.models;
+package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.models.compositeId.UserPlaylistID;
-import com.example.spoticloudspringdata.models.compositeId.UserPreferencesId;
+import com.example.spoticloudspringdata.entities.compositeId.UserPreferencesId;
 import jakarta.persistence.*;
 
 import java.util.Objects;

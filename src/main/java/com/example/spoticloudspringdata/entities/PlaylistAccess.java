@@ -1,9 +1,7 @@
-package com.example.spoticloudspringdata.models;
+package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.models.compositeId.PlaylistAccessID;
+import com.example.spoticloudspringdata.entities.compositeId.PlaylistAccessID;
 import jakarta.persistence.*;
-
-import java.util.Objects;
 
 @Entity
 @Table(name = "playlist_access")

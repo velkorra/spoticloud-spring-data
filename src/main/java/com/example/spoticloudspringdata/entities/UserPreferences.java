@@ -13,16 +13,18 @@ public class UserPreferences {
     private User user;
     private Genre genre;
 
-    public UserPreferences(UserPreferencesId id, float value) {
+    public UserPreferences(UserPreferencesId id, float value, User user, Genre genre) {
         this.id = id;
         this.value = value;
+        this.user = user;
+        this.genre = genre;
     }
 
     protected UserPreferences() {
 
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     public User getUser() {
@@ -33,8 +35,9 @@ public class UserPreferences {
         this.user = user;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("genreId")
+    @JoinColumn(name = "genre_id", referencedColumnName = "id")
     public Genre getGenre() {
         return genre;
     }

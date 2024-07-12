@@ -14,6 +14,7 @@ public class Artist extends BaseEntity{
     private int genreId;
     private Genre genre;
     private Set<ReleaseArtist> releaseArtists;
+    private Set<Track> tracks;
 
     public Artist(String name, String type, String description, String country, int genreId, Genre genre, Set<ReleaseArtist> releaseArtists) {
         this.name = name;
@@ -78,6 +79,15 @@ public class Artist extends BaseEntity{
     @OneToMany(mappedBy = "artist")
     public Set<ReleaseArtist> getReleaseArtists() {
         return releaseArtists;
+    }
+
+    @OneToMany(mappedBy = "artist")
+    public Set<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(Set<Track> tracks) {
+        this.tracks = tracks;
     }
 
     public void setReleaseArtists(Set<ReleaseArtist> releaseArtists) {

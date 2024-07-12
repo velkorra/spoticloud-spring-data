@@ -12,6 +12,7 @@ public class UserPlaylist {
     private UserPlaylistId id;
     private Timestamp dateAdded;
     private User user;
+    private Playlist playlist;
 
 
     public UserPlaylist(UserPlaylistId id) {
@@ -39,7 +40,7 @@ public class UserPlaylist {
     public void setDateAdded(Timestamp dateAdded) {
         this.dateAdded = dateAdded;
     }
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     public User getUser() {
@@ -48,6 +49,17 @@ public class UserPlaylist {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("playlistId")
+    @JoinColumn(name = "playlist_id", referencedColumnName = "id")
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
     }
 
     @Override

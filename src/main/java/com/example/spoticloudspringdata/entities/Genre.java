@@ -13,6 +13,7 @@ public class Genre extends BaseEntity{
     private Set<Track> tracks;
     private Set<Release> releases;
     private Set<Artist> artists;
+    private Set<UserPreferences> userPreferences;
 
     public Genre(String name, Integer parentGenreId, Set<Track> tracks, Set<Release> releases) {
         this.name = name;

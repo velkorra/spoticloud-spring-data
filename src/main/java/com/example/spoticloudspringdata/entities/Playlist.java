@@ -1,16 +1,19 @@
 package com.example.spoticloudspringdata.entities;
 
 import jakarta.persistence.*;
+
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "playlist")
-public class Playlist extends BaseEntity{
+public class Playlist extends BaseEntity {
     private String name;
     private int ownerId;
     private boolean isPrivate;
     private Timestamp dateCreated;
     private String description;
+    private Set<TrackPlaylist> tracks;
 
     @Column(name = "name", nullable = false)
     public String getName() {
@@ -51,6 +54,15 @@ public class Playlist extends BaseEntity{
     @Column(name = "description")
     public String getDescription() {
         return description;
+    }
+
+    @OneToMany(mappedBy = "playlist")
+    public Set<TrackPlaylist> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(Set<TrackPlaylist> tracks) {
+        this.tracks = tracks;
     }
 
     public void setDescription(String description) {

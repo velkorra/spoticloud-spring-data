@@ -10,6 +10,8 @@ import java.util.Set;
 public class Genre extends BaseEntity{
     private String name;
     private Integer parentGenreId;
+    private Genre parentGenre;
+    private Set<Genre> orphanGenres;
     private Set<Track> tracks;
     private Set<Release> releases;
     private Set<Artist> artists;
@@ -36,14 +38,23 @@ public class Genre extends BaseEntity{
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "parent_genre_id")
-    public Integer getParentGenreId() {
-        return parentGenreId;
+    @ManyToOne
+    @JoinColumn(name = "parent_genre_id", referencedColumnName = "id")
+    public Genre getParentGenre() {
+        return parentGenre;
     }
 
-    public void setParentGenreId(Integer parentGenreId) {
-        this.parentGenreId = parentGenreId;
+    public void setParentGenre(Genre parentGenre) {
+        this.parentGenre = parentGenre;
+    }
+
+    @OneToMany(mappedBy = "parentGenre")
+    public Set<Genre> getOrphanGenres() {
+        return orphanGenres;
+    }
+
+    public void setOrphanGenres(Set<Genre> orphanGenres) {
+        this.orphanGenres = orphanGenres;
     }
 
     @OneToMany(mappedBy = "genre")

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface BaseRepository<T, Id> {
     T save(T entity);
-    T findById(Id id);
+    Optional<T> findById(Id id);
     List<T> findAll();
 
 }

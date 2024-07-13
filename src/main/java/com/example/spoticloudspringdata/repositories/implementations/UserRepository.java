@@ -22,15 +22,6 @@ public class UserRepository extends AbstractBaseRepository<User, Integer> {
         user.setDeleted(true);
     }
 
-    @Override
-    public User findById(Integer id) {
-    User user = super.findById(id);
-        if (!user.getDeleted()) {
-            return user;
-        }
-        throw new RuntimeException("User not found");
-    }
-
     public User findByUsername(String username){
         return ((UserJpaRepository) repository).findByUsername(username);
     }

@@ -20,11 +20,8 @@ public abstract class AbstractBaseRepository<T, Id> implements BaseRepository<T,
     }
 
     @Override
-    public T findById(Id id) {
-        return repository.findById(id).orElseThrow(
-                () -> new RuntimeException("Could not find entity with id: " + id)
-        );
-
+    public Optional<T> findById(Id id) {
+        return repository.findById(id);
     }
 
     @Override

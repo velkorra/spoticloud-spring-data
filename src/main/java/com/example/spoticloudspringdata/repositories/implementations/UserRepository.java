@@ -18,8 +18,7 @@ public class UserRepository extends AbstractBaseRepository<User, Integer> {
         user.setDeleted(true);
     }
     public void deleteById(Integer id) {
-        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        user.setDeleted(true);
+        repository.findById(id).ifPresent(user -> user.setDeleted(true));
     }
 
     public User findByUsername(String username){

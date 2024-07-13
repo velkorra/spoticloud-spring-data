@@ -11,19 +11,24 @@ public class Artist extends BaseEntity{
     private String type;
     private String description;
     private String country;
-    private int genreId;
     private Genre genre;
     private Set<ReleaseArtist> releaseArtists;
     private Set<Track> tracks;
 
-    public Artist(String name, String type, String description, String country, int genreId, Genre genre, Set<ReleaseArtist> releaseArtists) {
+    public Artist(String name, String type, String description, String country, Genre genre, Set<ReleaseArtist> releaseArtists) {
         this.name = name;
         this.type = type;
         this.description = description;
         this.country = country;
-        this.genreId = genreId;
         this.genre = genre;
         this.releaseArtists = releaseArtists;
+    }
+
+    public Artist(String name, String type, String description, String country) {
+        this.name = name;
+        this.type = type;
+        this.description = description;
+        this.country = country;
     }
 
     protected Artist() {

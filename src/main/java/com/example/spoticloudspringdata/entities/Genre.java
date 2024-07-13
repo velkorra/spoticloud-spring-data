@@ -38,7 +38,7 @@ public class Genre extends BaseEntity{
         this.name = name;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_genre_id", referencedColumnName = "id")
     public Genre getParentGenre() {
         return parentGenre;

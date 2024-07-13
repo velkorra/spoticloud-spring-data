@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -14,6 +15,7 @@ public class User extends BaseEntity {
     private String email;
     private String password;
     private Timestamp dateRegistered;
+    private Boolean isDeleted = Boolean.FALSE;
     private Set<UserPlaylist> userPlaylists;
     private Set<UserRelease> userReleases;
     private Set<UserPreferences> userPreferences;
@@ -26,10 +28,17 @@ public class User extends BaseEntity {
         this.userPlaylists = userPlaylists;
         this.userReleases = userReleases;
         this.userPreferences = userPreferences;
+        this.isDeleted = false;
     }
 
     protected User() {
 
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
     @Basic
@@ -63,7 +72,7 @@ public class User extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "date_registered")
+    @Column(name = "date_registered", insertable = false, updatable = false)
     public Timestamp getDateRegistered() {
         return dateRegistered;
     }
@@ -97,6 +106,21 @@ public class User extends BaseEntity {
 
     public void setUserPreferences(Set<UserPreferences> userPreferences) {
         this.userPreferences = userPreferences;
+    }
+
+    @Transient
+    public Set<Release> getReleases() {
+        return getUserReleases().stream().map(UserRelease::getRelease).collect(Collectors.toSet());
+    }
+
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "is_deleted", updatable = false, insertable = false)
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     @Override

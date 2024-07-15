@@ -1,6 +1,9 @@
 package com.example.spoticloudspringdata.repositories.base.classes;
 
+import com.example.spoticloudspringdata.entities.SoftDeletable;
 import com.example.spoticloudspringdata.repositories.base.interfaces.BaseRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -16,7 +19,6 @@ public abstract class AbstractBaseRepository<T, Id> implements BaseRepository<T,
     @Override
     public T save(T entity) {
         return repository.save(entity);
-
     }
 
     @Override

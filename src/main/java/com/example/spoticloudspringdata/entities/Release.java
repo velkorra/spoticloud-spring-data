@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Release extends BaseEntity {
@@ -12,21 +13,11 @@ public class Release extends BaseEntity {
     private Date dateReleased;
     private String language;
     private String type;
-    private int genreId;
     private String description;
     private Genre genre;
     private Set<ReleaseArtist> releaseArtists;
     private Set<Track> tracks;
 
-    public Release(String name, Date dateReleased, String language, String type, int genreId, String description, Genre genre) {
-        this.name = name;
-        this.dateReleased = dateReleased;
-        this.language = language;
-        this.type = type;
-        this.genreId = genreId;
-        this.description = description;
-        this.genre = genre;
-    }
 
     protected Release() {
 
@@ -106,21 +97,15 @@ public class Release extends BaseEntity {
         this.tracks = tracks;
     }
 
+    public void addTrack(Track track) {
+        this.tracks.add(track);
+    }
     public void setReleaseArtists(Set<ReleaseArtist> releaseArtists) {
         this.releaseArtists = releaseArtists;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Release release = (Release) o;
-        return id == release.id && genreId == release.genreId && Objects.equals(name, release.name) && Objects.equals(dateReleased, release.dateReleased) && Objects.equals(language, release.language) && Objects.equals(type, release.type) && Objects.equals(description, release.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, dateReleased, language, type, genreId, description);
+    @Transient
+    public Set<Artist> getArtists() {
+        return getReleaseArtists().stream().map(ReleaseArtist::getArtist).collect(Collectors.toSet());
     }
 }

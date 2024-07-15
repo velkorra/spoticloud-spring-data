@@ -1,6 +1,5 @@
 package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.entities.compositeId.UserReleaseId;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -10,7 +9,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements SoftDeletable {
     private String username;
     private String email;
     private String password;
@@ -19,17 +18,6 @@ public class User extends BaseEntity {
     private Set<UserPlaylist> userPlaylists;
     private Set<UserRelease> userReleases;
     private Set<UserPreferences> userPreferences;
-
-    public User(String username, String email, String password, Timestamp dateRegistered, Set<UserPlaylist> userPlaylists, Set<UserRelease> userReleases, Set<UserPreferences> userPreferences) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.dateRegistered = dateRegistered;
-        this.userPlaylists = userPlaylists;
-        this.userReleases = userReleases;
-        this.userPreferences = userPreferences;
-        this.isDeleted = false;
-    }
 
     protected User() {
 
@@ -114,8 +102,8 @@ public class User extends BaseEntity {
     }
 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "is_deleted", updatable = false, insertable = false)
-    public Boolean getDeleted() {
+    @Column(name = "is_deleted", insertable = false)
+    public boolean getDeleted() {
         return isDeleted;
     }
 
@@ -134,5 +122,11 @@ public class User extends BaseEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, email, password, dateRegistered);
+    }
+
+    @Transient
+    @Override
+    public boolean isDeleted() {
+        return isDeleted;
     }
 }

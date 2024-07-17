@@ -2,7 +2,7 @@ package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.*;
 import com.example.spoticloudspringdata.exceptions.*;
-import com.example.spoticloudspringdata.repositories.TrackRepository;
+import com.example.spoticloudspringdata.repositories.implementations.TrackRepository;
 import com.example.spoticloudspringdata.repositories.implementations.PlaylistRepository;
 import com.example.spoticloudspringdata.repositories.implementations.PlaylistTokenRepository;
 import com.example.spoticloudspringdata.repositories.implementations.UserRepository;

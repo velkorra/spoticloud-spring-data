@@ -6,7 +6,7 @@ import com.example.spoticloudspringdata.entities.User;
 import com.example.spoticloudspringdata.exceptions.TrackAlreadyLikedException;
 import com.example.spoticloudspringdata.exceptions.TrackNotFoundException;
 import com.example.spoticloudspringdata.exceptions.UserNotFoundException;
-import com.example.spoticloudspringdata.repositories.TrackRepository;
+import com.example.spoticloudspringdata.repositories.implementations.TrackRepository;
 import com.example.spoticloudspringdata.repositories.implementations.UserRepository;
 import com.example.spoticloudspringdata.schemas.HistoryRecordDto;
 import com.example.spoticloudspringdata.schemas.TrackDto;

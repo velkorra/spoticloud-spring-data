@@ -1,7 +1,7 @@
 package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.Genre;
-import com.example.spoticloudspringdata.repositories.GenreRepository;
+import com.example.spoticloudspringdata.repositories.implementations.GenreRepository;
 import com.example.spoticloudspringdata.schemas.GenreDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

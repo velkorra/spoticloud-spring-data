@@ -3,7 +3,7 @@ package com.example.spoticloudspringdata.services;
 import com.example.spoticloudspringdata.entities.*;
 import com.example.spoticloudspringdata.exceptions.NoRecommendationFoundException;
 import com.example.spoticloudspringdata.exceptions.UserNotFoundException;
-import com.example.spoticloudspringdata.repositories.TrackRepository;
+import com.example.spoticloudspringdata.repositories.implementations.TrackRepository;
 import com.example.spoticloudspringdata.repositories.implementations.PlaylistRepository;
 import com.example.spoticloudspringdata.repositories.implementations.UserRepository;
 import jakarta.transaction.Transactional;

@@ -43,8 +43,6 @@ interface UserJpaRepository extends JpaRepository<User, Integer> {
     @Query("select u from User u where u.deleted = false and u.email = :email")
     Optional<User> findByEmail(@Param("email") String email);
 
-    @Query("select u.email from User u")
-    Set<String> findAllEmails();
 
 }
 

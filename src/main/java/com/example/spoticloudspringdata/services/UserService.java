@@ -3,6 +3,7 @@ package com.example.spoticloudspringdata.services;
 import com.example.spoticloudspringdata.entities.LikedTracks;
 import com.example.spoticloudspringdata.entities.Track;
 import com.example.spoticloudspringdata.entities.User;
+import com.example.spoticloudspringdata.exceptions.EmailAlreadyRegistered;
 import com.example.spoticloudspringdata.exceptions.TrackAlreadyLikedException;
 import com.example.spoticloudspringdata.exceptions.TrackNotFoundException;
 import com.example.spoticloudspringdata.exceptions.UserNotFoundException;
@@ -94,7 +95,7 @@ public class UserService {
             User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword());
             return new UserDto(userRepository.save(newUser));
         }
-        throw new IllegalArgumentException("Email already exists");
+        throw new EmailAlreadyRegistered(user.getEmail());
     }
 
     public List<HistoryRecordDto> history(int userId) {

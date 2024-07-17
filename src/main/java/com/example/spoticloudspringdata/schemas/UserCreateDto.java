@@ -1,12 +1,12 @@
 package com.example.spoticloudspringdata.schemas;
 
 
-public class UserCreate {
+public class UserCreateDto {
     private String username;
     private String email;
     private String password;
 
-    public UserCreate(String username, String email, String password) {
+    public UserCreateDto(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;

@@ -13,7 +13,7 @@ public class PlaylistAccessId implements Serializable {
     @Column(name = "playlist_id")
     private int playlistId;
 
-    public PlaylistAccessId() {
+    protected PlaylistAccessId() {
 
     }
     public PlaylistAccessId(int userId, int playlistId) {

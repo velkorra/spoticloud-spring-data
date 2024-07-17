@@ -9,10 +9,10 @@ public class TrackPlaylist {
     private Track track;
     private Playlist playlist;
 
-    public TrackPlaylist(TrackPlaylistId id, Track track, Playlist playlist) {
-        this.id = id;
+    public TrackPlaylist(Track track, Playlist playlist) {
         this.track = track;
         this.playlist = playlist;
+        this.id = new TrackPlaylistId(playlist.getId(), track.getId());
     }
 
     protected TrackPlaylist() {
@@ -40,8 +40,8 @@ public class TrackPlaylist {
     }
 
     @ManyToOne
-    @MapsId("trackId")
-    @JoinColumn(name = "track_id", referencedColumnName = "id")
+    @MapsId("playlistId")
+    @JoinColumn(name = "playlist_id", referencedColumnName = "id")
     public Playlist getPlaylist() {
         return playlist;
     }

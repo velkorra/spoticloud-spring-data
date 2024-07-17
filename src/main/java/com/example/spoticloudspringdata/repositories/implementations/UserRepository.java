@@ -1,19 +1,20 @@
 package com.example.spoticloudspringdata.repositories.implementations;
 
 import com.example.spoticloudspringdata.entities.User;
-import com.example.spoticloudspringdata.repositories.base.classes.AbstractBaseRepository;
 import com.example.spoticloudspringdata.repositories.base.classes.SoftDeletableRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Repository
 public class UserRepository extends SoftDeletableRepository<User, Integer> {
     private final UserJpaRepository repository;
+
     public UserRepository(JpaRepository<User, Integer> repository) {
         super(repository);
         this.repository = (UserJpaRepository) repository;
@@ -46,5 +47,5 @@ interface UserJpaRepository extends JpaRepository<User, Integer> {
     @Query("select u.email from User u")
     Set<String> findAllEmails();
 
-
 }
+

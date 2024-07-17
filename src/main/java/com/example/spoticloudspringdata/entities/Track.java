@@ -3,6 +3,8 @@ package com.example.spoticloudspringdata.entities;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "track")
@@ -10,24 +12,24 @@ public class Track extends BaseEntity {
     private String name;
     private String language;
     private String type;
-    private int genreId;
-    private Integer releaseId;
     private int duration;
     private Boolean explicit;
     private Genre genre;
     private Artist artist;
     private Release release;
+    private Integer albumPosition;
+    private Set<TrackTag> trackTags;
 
-    public Track(String name, String language, String type, int genreId, Integer releaseId, int duration, Boolean explicit, Genre genre, Artist artist) {
+
+    public Track(String name, String language, String type, int duration, Boolean explicit, Genre genre, Artist artist, int albumPosition) {
         this.name = name;
         this.language = language;
         this.type = type;
-        this.genreId = genreId;
-        this.releaseId = releaseId;
         this.duration = duration;
         this.explicit = explicit;
         this.genre = genre;
         this.artist = artist;
+        this.albumPosition = albumPosition;
     }
 
     protected Track() {
@@ -104,6 +106,15 @@ public class Track extends BaseEntity {
         this.explicit = explicit;
     }
 
+    @Column(name = "album_position")
+    public Integer getAlbumPosition() {
+        return albumPosition;
+    }
+
+    public void setAlbumPosition(Integer albumPosition) {
+        this.albumPosition = albumPosition;
+    }
+
     @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     public Genre getGenre() {
@@ -114,21 +125,35 @@ public class Track extends BaseEntity {
         this.genre = genre;
     }
 
+    @OneToMany(mappedBy = "track")
+    public Set<TrackTag> getTrackTags() {
+        return trackTags;
+    }
+
+    @Transient
+    public Set<Genre> getTags(){
+        return getTrackTags().stream().map(TrackTag::getGenre).collect(Collectors.toSet());
+    }
+
+    public void setTrackTags(Set<TrackTag> trackTags) {
+        this.trackTags = trackTags;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Track track = (Track) o;
-        return genreId == track.genreId && duration == track.duration && Objects.equals(name, track.name) && Objects.equals(language, track.language) && Objects.equals(type, track.type) && Objects.equals(releaseId, track.releaseId) && Objects.equals(explicit, track.explicit) && Objects.equals(genre, track.genre) && Objects.equals(artist, track.artist);
+        return duration == track.duration && Objects.equals(name, track.name) && Objects.equals(language, track.language) && Objects.equals(type, track.type) && Objects.equals(explicit, track.explicit) && Objects.equals(genre, track.genre) && Objects.equals(artist, track.artist) && Objects.equals(release, track.release) && Objects.equals(albumPosition, track.albumPosition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, language, type, genreId, releaseId, duration, explicit, genre, artist);
+        return Objects.hash(name, language, type, duration, explicit, genre, artist, release, albumPosition);
     }
 
     @Override
     public String toString() {
-        return STR."Track{id=\{id}, name='\{name}\{'\''}, language='\{language}\{'\''}, type='\{type}\{'\''}, genreId=\{genreId}, releaseId=\{releaseId}, duration=\{duration}, explicit=\{explicit}, genre=\{genre}\{'}'}";
+        return STR."Track{id=\{id}, name='\{name}\{'\''}, language='\{language}\{'\''}, type='\{type}\{'\''}, duration=\{duration}, explicit=\{explicit}, genre=\{genre}\{'}'}";
     }
 }

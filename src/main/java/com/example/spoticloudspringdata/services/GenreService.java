@@ -2,6 +2,7 @@ package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.Genre;
 import com.example.spoticloudspringdata.repositories.GenreRepository;
+import com.example.spoticloudspringdata.schemas.GenreDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class GenreService {
     public Genre findByName(String name) {
         return genreRepository.findByName(name);
     }
-    public List<Genre> getAllGenres() {
-        return genreRepository.findAll();
+    public List<GenreDto> getAllGenres() {
+        return genreRepository.findAll().stream().map(GenreDto::new).toList();
     }
 }

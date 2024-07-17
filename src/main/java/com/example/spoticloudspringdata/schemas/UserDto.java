@@ -2,18 +2,12 @@ package com.example.spoticloudspringdata.schemas;
 
 import com.example.spoticloudspringdata.entities.User;
 
-public class UserResponse {
+public class UserDto {
     private int id;
     private String username;
     private String email;
 
-    public UserResponse(int id, String username, String password, String email) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-    }
-
-    public UserResponse(User user) {
+    public UserDto(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
         this.username = user.getUsername();

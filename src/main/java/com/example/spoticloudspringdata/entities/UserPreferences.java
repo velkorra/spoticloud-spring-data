@@ -13,8 +13,7 @@ public class UserPreferences {
     private User user;
     private Genre genre;
 
-    public UserPreferences(UserPreferencesId id, float value, User user, Genre genre) {
-        this.id = id;
+    public UserPreferences(float value, User user, Genre genre) {
         this.value = value;
         this.user = user;
         this.genre = genre;
@@ -62,6 +61,11 @@ public class UserPreferences {
 
     public void setValue(float value) {
         this.value = value;
+    }
+
+    @Transient
+    public void increaseValue(float delta) {
+        value += delta;
     }
 
     @Override

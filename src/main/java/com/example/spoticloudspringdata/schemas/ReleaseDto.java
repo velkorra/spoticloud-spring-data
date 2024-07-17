@@ -1,13 +1,16 @@
 package com.example.spoticloudspringdata.schemas;
 
+import com.example.spoticloudspringdata.entities.Artist;
 import com.example.spoticloudspringdata.entities.Release;
+import com.example.spoticloudspringdata.entities.ReleaseArtist;
 import com.example.spoticloudspringdata.entities.Track;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class ReleaseResponse {
+public class ReleaseDto {
+    private int id;
     private String name;
     private Date dateReleased;
     private String language;
@@ -16,8 +19,10 @@ public class ReleaseResponse {
     private String genre;
     private String totalDuration;
     private int totalTracks;
+    private Set<String> artists;
 
-    public ReleaseResponse(Release release) {
+    public ReleaseDto(Release release) {
+        this.id = release.getId();
         this.name = release.getName();
         this.dateReleased = release.getDateReleased();
         this.language = release.getLanguage();
@@ -30,6 +35,7 @@ public class ReleaseResponse {
         int seconds = duration % 60;
         this.totalDuration = String.format("%d:%02d", minutes, seconds);
         this.totalTracks = tracks.size();
+        this.artists = release.getReleaseArtists().stream().map(ReleaseArtist::getArtist).map(Artist::getName).collect(Collectors.toSet());
 
     }
 
@@ -95,5 +101,21 @@ public class ReleaseResponse {
 
     public void setTotalTracks(int totalTracks) {
         this.totalTracks = totalTracks;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Set<String> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<String> artists) {
+        this.artists = artists;
     }
 }

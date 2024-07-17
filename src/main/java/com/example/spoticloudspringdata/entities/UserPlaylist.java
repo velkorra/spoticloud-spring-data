@@ -15,13 +15,16 @@ public class UserPlaylist {
     private Playlist playlist;
 
 
-    public UserPlaylist(UserPlaylistId id) {
-        this.id = id;
+    public UserPlaylist(User user, Playlist playlist) {
+        this.user = user;
+        this.playlist = playlist;
+        this.id = new UserPlaylistId(user.getId(), playlist.getId());
     }
 
     protected UserPlaylist() {
 
     }
+
 
     @EmbeddedId
     public UserPlaylistId getId() {
@@ -32,7 +35,7 @@ public class UserPlaylist {
     }
 
 
-    @Column(name = "date_added", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "date_added", nullable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     public Timestamp getDateAdded() {
         return dateAdded;
     }

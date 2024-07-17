@@ -3,6 +3,8 @@ package com.example.spoticloudspringdata.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,10 +16,14 @@ public class User extends BaseEntity implements SoftDeletable {
     private String email;
     private String password;
     private Timestamp dateRegistered;
-    private Boolean isDeleted = Boolean.FALSE;
+    private Boolean isDeleted;
     private Set<UserPlaylist> userPlaylists;
     private Set<UserRelease> userReleases;
     private Set<UserPreferences> userPreferences;
+    private Set<Playlist> createdPlaylists;
+    private Set<ListeningHistory> listeningHistory;
+    private List<LikedTracks> likedTracks;
+    private Set<PlaylistAccess> accessedPlaylists;
 
     protected User() {
 
@@ -69,7 +75,7 @@ public class User extends BaseEntity implements SoftDeletable {
         this.dateRegistered = dateRegistered;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<UserPlaylist> getUserPlaylists() {
         return userPlaylists;
     }
@@ -78,7 +84,7 @@ public class User extends BaseEntity implements SoftDeletable {
         this.userPlaylists = userPlaylists;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<UserRelease> getUserReleases() {
         return userReleases;
     }
@@ -87,7 +93,7 @@ public class User extends BaseEntity implements SoftDeletable {
         this.userReleases = userReleases;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<UserPreferences> getUserPreferences() {
         return userPreferences;
     }
@@ -109,6 +115,57 @@ public class User extends BaseEntity implements SoftDeletable {
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    @OneToMany(mappedBy = "owner")
+    public Set<Playlist> getCreatedPlaylists() {
+        return createdPlaylists;
+    }
+
+    public void setCreatedPlaylists(Set<Playlist> createdPlaylists) {
+        this.createdPlaylists = createdPlaylists;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<ListeningHistory> getListeningHistory() {
+        return listeningHistory;
+    }
+
+    @Transient
+    public List<Track> getListenedTracks(){
+        return getListeningHistory().stream().sorted(Comparator.comparing(ListeningHistory::getDateListened).reversed()).map(ListeningHistory::getTrack).collect(Collectors.toList());
+    }
+
+    public void setListeningHistory(Set<ListeningHistory> listeningHistory) {
+        this.listeningHistory = listeningHistory;
+    }
+
+    public void addListeningHistory(Track track) {
+        getListeningHistory().add(new ListeningHistory(this, track));
+
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<LikedTracks> getLikedTracks() {
+        return likedTracks;
+    }
+
+    @Transient
+    public void addLikedTrack(Track track) {
+        likedTracks.add(new LikedTracks(this, track));
+    }
+
+    public void setLikedTracks(List<LikedTracks> likedTracks) {
+        this.likedTracks = likedTracks;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<PlaylistAccess> getAccessedPlaylists() {
+        return accessedPlaylists;
+    }
+
+    public void setAccessedPlaylists(Set<PlaylistAccess> accessedPlaylists) {
+        this.accessedPlaylists = accessedPlaylists;
     }
 
     @Override

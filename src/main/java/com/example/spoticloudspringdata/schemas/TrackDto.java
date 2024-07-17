@@ -1,11 +1,12 @@
 package com.example.spoticloudspringdata.schemas;
 
-import com.example.spoticloudspringdata.entities.Artist;
-import com.example.spoticloudspringdata.entities.Genre;
-import com.example.spoticloudspringdata.entities.Release;
 import com.example.spoticloudspringdata.entities.Track;
 
-public class TrackResponse {
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class TrackDto {
+    private int id;
     private String name;
     private String language;
     private String type;
@@ -13,8 +14,10 @@ public class TrackResponse {
     private String explicit;
     private String genre;
     private String artist;
+    private Set<GenreDto> tags;
 
-    public TrackResponse(Track track) {
+    public TrackDto(Track track) {
+        this.id = track.getId();
         this.name = track.getName();
         this.language = track.getLanguage();
         this.type = track.getType();
@@ -28,6 +31,7 @@ public class TrackResponse {
         int minutes = duration / 60;
         int seconds = duration % 60;
         this.duration = String.format("%d:%02d", minutes, seconds);
+        this.tags = track.getTags().stream().map(GenreDto::new).collect(Collectors.toSet());
     }
 
     public String getName() {
@@ -84,5 +88,21 @@ public class TrackResponse {
 
     public void setArtist(String artist) {
         this.artist = artist;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Set<GenreDto> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<GenreDto> tags) {
+        this.tags = tags;
     }
 }

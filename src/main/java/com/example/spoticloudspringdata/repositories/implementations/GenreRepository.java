@@ -17,10 +17,12 @@ public class GenreRepository extends AbstractBaseRepository<Genre, Integer> {
         super(repository);
         this.repository = (GenreJpaRepository) repository;
     }
+
     public Genre findByName(String name) {
         return repository.findByName(name);
     }
-    public List<Genre> findMainGenres(){
+
+    public List<Genre> findMainGenres() {
         return repository.findMainGenres();
     }
 
@@ -28,7 +30,6 @@ public class GenreRepository extends AbstractBaseRepository<Genre, Integer> {
 }
 
 
-@Repository
 interface GenreJpaRepository extends JpaRepository<Genre, Integer> {
 
     @Query("select g from Genre g where g.name = :name")

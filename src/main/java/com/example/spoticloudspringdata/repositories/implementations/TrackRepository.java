@@ -17,6 +17,6 @@ public class TrackRepository extends AbstractBaseRepository<Track, Integer> {
 }
 
 
-@Repository
+
 interface TrackJpaRepository extends JpaRepository<Track, Integer> {
 }

@@ -33,7 +33,6 @@ public class UserRepository extends SoftDeletableRepository<User, Integer> {
     }
 }
 
-@Repository
 interface UserJpaRepository extends JpaRepository<User, Integer> {
 
     boolean existsByEmail(String email);

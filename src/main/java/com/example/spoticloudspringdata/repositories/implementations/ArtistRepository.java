@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ArtistRepository extends AbstractBaseRepository<Artist, Integer>{
+public class ArtistRepository extends AbstractBaseRepository<Artist, Integer> {
     private final ArtistJpaRepository repository;
 
     public ArtistRepository(JpaRepository<Artist, Integer> repository) {
@@ -25,12 +25,6 @@ public class ArtistRepository extends AbstractBaseRepository<Artist, Integer>{
 }
 
 
-
-
-
-
-
-@Repository
 interface ArtistJpaRepository extends JpaRepository<Artist, Integer> {
     List<Artist> findByName(String name);
 }

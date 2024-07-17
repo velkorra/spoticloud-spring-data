@@ -25,7 +25,6 @@ public class PlaylistRepository extends AbstractBaseRepository<Playlist, Integer
 }
 
 
-@Repository
 interface PlaylistJpaRepository extends JpaRepository<Playlist, Integer> {
 
     @Query("select p from Playlist p where p.owner.id = :id")

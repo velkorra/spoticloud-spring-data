@@ -24,7 +24,6 @@ public class PlaylistTokenRepository extends AbstractBaseRepository<PlaylistToke
 }
 
 
-@Repository
 interface PlaylistTokenJpaRepository extends JpaRepository<PlaylistToken, Integer> {
     Optional<PlaylistToken> findByToken(String token);
 }

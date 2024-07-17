@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ReleaseRepository extends AbstractBaseRepository<Release, Integer>{
+public class ReleaseRepository extends AbstractBaseRepository<Release, Integer> {
     private final ReleaseJpaRepository repository;
 
     @Autowired
@@ -20,15 +20,12 @@ public class ReleaseRepository extends AbstractBaseRepository<Release, Integer>{
         this.repository = (ReleaseJpaRepository) repository;
     }
 
-    public List<Track> findAllTracks(Release release){
+    public List<Track> findAllTracks(Release release) {
         return repository.findAllTracks(release);
     }
 }
 
 
-
-
-@Repository
 interface ReleaseJpaRepository extends JpaRepository<Release, Integer> {
 
     @Query("select t from Track t where t.release = :release")

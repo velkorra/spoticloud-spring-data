@@ -3,8 +3,8 @@ package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.Artist;
 import com.example.spoticloudspringdata.entities.Genre;
-import com.example.spoticloudspringdata.repositories.implementations.ArtistRepository;
-import com.example.spoticloudspringdata.repositories.implementations.GenreRepository;
+import com.example.spoticloudspringdata.repositories.ArtistRepository;
+import com.example.spoticloudspringdata.repositories.GenreRepository;
 import com.example.spoticloudspringdata.schemas.ArtistDto;
 import org.springframework.stereotype.Service;
 

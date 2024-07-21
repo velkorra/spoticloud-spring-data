@@ -2,10 +2,10 @@ package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.*;
 import com.example.spoticloudspringdata.exceptions.*;
-import com.example.spoticloudspringdata.repositories.implementations.TrackRepository;
-import com.example.spoticloudspringdata.repositories.implementations.PlaylistRepository;
-import com.example.spoticloudspringdata.repositories.implementations.PlaylistTokenRepository;
-import com.example.spoticloudspringdata.repositories.implementations.UserRepository;
+import com.example.spoticloudspringdata.repositories.TrackRepository;
+import com.example.spoticloudspringdata.repositories.PlaylistRepository;
+import com.example.spoticloudspringdata.repositories.PlaylistTokenRepository;
+import com.example.spoticloudspringdata.repositories.UserRepository;
 import com.example.spoticloudspringdata.schemas.PlaylistCreateDto;
 import com.example.spoticloudspringdata.schemas.PlaylistDto;
 import jakarta.transaction.Transactional;

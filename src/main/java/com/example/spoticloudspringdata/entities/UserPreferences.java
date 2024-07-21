@@ -17,6 +17,7 @@ public class UserPreferences {
         this.value = value;
         this.user = user;
         this.genre = genre;
+        this.id = new UserPreferencesId(user.getId(), genre.getId());
     }
 
     protected UserPreferences() {

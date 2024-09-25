@@ -21,7 +21,7 @@ public class ReleaseRepositoryImpl implements ReleaseRepository {
 
     @Override
     public Release save(Release release) {
-        entityManager.persist(release);
+        entityManager.merge(release);
         return release;
     }
 

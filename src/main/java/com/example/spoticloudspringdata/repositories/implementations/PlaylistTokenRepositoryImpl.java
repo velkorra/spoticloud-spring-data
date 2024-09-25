@@ -19,7 +19,7 @@ public class PlaylistTokenRepositoryImpl implements PlaylistTokenRepository {
 
     @Override
     public PlaylistToken save(PlaylistToken playlistToken) {
-        entityManager.persist(playlistToken);
+        entityManager.merge(playlistToken);
         return playlistToken;
     }
 

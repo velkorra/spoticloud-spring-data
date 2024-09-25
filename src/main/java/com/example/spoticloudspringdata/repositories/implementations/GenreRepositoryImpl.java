@@ -20,7 +20,7 @@ public class GenreRepositoryImpl implements GenreRepository {
 
     @Override
     public Genre save(Genre genre) {
-        entityManager.persist(genre);
+        entityManager.merge(genre);
         return genre;
     }
 

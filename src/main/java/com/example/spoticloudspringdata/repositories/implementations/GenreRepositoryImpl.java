@@ -3,6 +3,7 @@ package com.example.spoticloudspringdata.repositories.implementations;
 import com.example.spoticloudspringdata.entities.Genre;
 import com.example.spoticloudspringdata.repositories.GenreRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
@@ -20,8 +21,7 @@ public class GenreRepositoryImpl implements GenreRepository {
 
     @Override
     public Genre save(Genre genre) {
-        entityManager.merge(genre);
-        return genre;
+        return entityManager.merge(genre);
     }
 
     @Override
@@ -35,10 +35,16 @@ public class GenreRepositoryImpl implements GenreRepository {
     }
 
     @Override
-    public Genre findByName(String name) {
-        return entityManager.createQuery("SELECT g FROM Genre g WHERE g.name = :name", Genre.class)
-                .setParameter("name", name)
-                .getSingleResult();
+    public Optional<Genre> findByName(String name) {
+        try {
+            Genre genre = entityManager.createQuery("SELECT g FROM Genre g WHERE g.name = :name", Genre.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+            return Optional.of(genre);
+        }
+        catch (NoResultException e){
+            return Optional.empty();
+        }
     }
 
     @Override

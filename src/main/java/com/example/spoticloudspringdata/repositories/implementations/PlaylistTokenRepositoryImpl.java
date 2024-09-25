@@ -3,6 +3,7 @@ package com.example.spoticloudspringdata.repositories.implementations;
 import com.example.spoticloudspringdata.entities.PlaylistToken;
 import com.example.spoticloudspringdata.repositories.PlaylistTokenRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
@@ -19,16 +20,18 @@ public class PlaylistTokenRepositoryImpl implements PlaylistTokenRepository {
 
     @Override
     public PlaylistToken save(PlaylistToken playlistToken) {
-        entityManager.merge(playlistToken);
-        return playlistToken;
+        return entityManager.merge(playlistToken);
     }
 
     @Override
     public Optional<PlaylistToken> findByToken(String token) {
-        return Optional.ofNullable(entityManager.createQuery("select pt from PlaylistToken pt where pt.token = :token", PlaylistToken.class)
-                .setParameter("token", token)
-                .getSingleResult());
+        try {
+            PlaylistToken playlistToken = entityManager.createQuery("select pt from PlaylistToken pt where pt.token = :token", PlaylistToken.class)
+                    .setParameter("token", token)
+                    .getSingleResult();
+            return Optional.of(playlistToken);
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
-
-
 }

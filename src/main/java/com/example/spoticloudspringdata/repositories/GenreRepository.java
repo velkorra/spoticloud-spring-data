@@ -14,7 +14,7 @@ public interface GenreRepository {
 
     List<Genre> findAll();
 
-    Genre findByName(String name);
+    Optional<Genre> findByName(String name);
 
     List<Genre> findMainGenres();
 

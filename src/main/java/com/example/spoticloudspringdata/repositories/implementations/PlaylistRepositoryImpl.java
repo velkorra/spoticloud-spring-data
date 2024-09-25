@@ -20,8 +20,7 @@ public class PlaylistRepositoryImpl implements PlaylistRepository {
 
     @Override
     public Playlist save(Playlist playlist) {
-        entityManager.merge(playlist);
-        return playlist;
+        return entityManager.merge(playlist);
     }
 
     @Override

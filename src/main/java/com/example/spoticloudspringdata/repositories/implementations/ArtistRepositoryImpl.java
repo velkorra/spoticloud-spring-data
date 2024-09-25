@@ -21,8 +21,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
 
     @Override
     public Artist save(Artist artist) {
-        entityManager.merge(artist);
-        return artist;
+        return entityManager.merge(artist);
     }
 
     @Override

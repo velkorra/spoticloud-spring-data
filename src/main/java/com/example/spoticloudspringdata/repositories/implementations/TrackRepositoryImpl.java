@@ -20,8 +20,8 @@ public class TrackRepositoryImpl implements TrackRepository {
 
     @Override
     public Track save(Track track) {
-        entityManager.merge(track);
-        return track;
+        return entityManager.merge(track);
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.spoticloudspringdata.repositories;
 import com.example.spoticloudspringdata.entities.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -12,9 +13,9 @@ public interface UserRepository {
 
     Optional<User> findById(int id);
 
-    Set<User> findAll();
+    List<User> findAll();
 
-    Set<User> findByUsername(String username);
+    List<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);
 

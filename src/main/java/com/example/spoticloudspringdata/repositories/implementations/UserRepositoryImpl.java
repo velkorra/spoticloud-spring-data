@@ -8,6 +8,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,15 +32,15 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Set<User> findAll() {
-        return new HashSet<>(entityManager.createQuery("select u from User u where u.deleted = false", User.class).getResultList());
+    public List<User> findAll() {
+        return entityManager.createQuery("select u from User u where u.deleted = false", User.class).getResultList();
     }
 
     @Override
-    public Set<User> findByUsername(String username) {
-        return new HashSet<>(entityManager.createQuery("select u from User u where u.deleted = false and u.username = :username", User.class)
+    public List<User> findByUsername(String username) {
+        return entityManager.createQuery("select u from User u where u.deleted = false and u.username = :username", User.class)
                 .setParameter("username", username)
-                .getResultList());
+                .getResultList();
     }
 
     @Override

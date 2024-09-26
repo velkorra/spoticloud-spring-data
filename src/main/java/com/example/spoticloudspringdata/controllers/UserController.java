@@ -23,53 +23,53 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> getUsers(){
+    public List<UserDto> getUsers() {
         return userService.getUsers();
     }
 
     @PostMapping("/listen/{user}/{track}")
-    public TrackDto listen(@PathVariable("user") int user, @PathVariable("track") int track){
+    public TrackDto listen(@PathVariable("user") int user, @PathVariable("track") int track) {
         return new TrackDto(userService.listen(user, track));
     }
 
     @GetMapping("/history/{userId}")
-    public List<HistoryRecordDto> getHistory(@PathVariable("userId") int userId){
+    public List<HistoryRecordDto> getHistory(@PathVariable("userId") int userId) {
         return userService.history(userId);
     }
 
     @GetMapping("/{username}")
-    public Set<UserDto> getUser(@PathVariable String username){
+    public List<UserDto> getUser(@PathVariable String username) {
         return userService.getByUsername(username);
     }
 
     @PostMapping
-    public UserDto createUser(@RequestBody UserCreateDto user){
+    public UserDto createUser(@RequestBody UserCreateDto user) {
         return userService.createUser(user);
     }
 
-    @GetMapping("like/{userId}/{trackId}")
-    public void like(@PathVariable("userId") int userId, @PathVariable("trackId") int trackId){
+    @PostMapping("like/{userId}/{trackId}")
+    public void like(@PathVariable("userId") int userId, @PathVariable("trackId") int trackId) {
         userService.likeTrack(userId, trackId);
     }
 
     @GetMapping("liked/{userId}")
-    public List<TrackDto> getLikedTracks(@PathVariable("userId") int userId){
+    public List<TrackDto> getLikedTracks(@PathVariable("userId") int userId) {
         return userService.getLikedTracks(userId);
     }
 
     @GetMapping("/recommend/{userID}")
-    public TrackDto recommendTrack(@PathVariable int userID){
+    public TrackDto recommendTrack(@PathVariable int userID) {
         return new TrackDto(recommendationService.recommendTrack(userID));
     }
 
     @GetMapping("/recommended-tracks/{userId}")
-    public List<TrackDto> getRecommendedTracks(@PathVariable int userId){
+    public List<TrackDto> getRecommendedTracks(@PathVariable int userId) {
         return recommendationService.recommendTracks(userId)
                 .stream().map(TrackDto::new).toList();
     }
 
     @GetMapping("/recommended-playlist/{userId}")
-    public PlaylistDto getRecommendedPlaylist(@PathVariable int userId){
+    public PlaylistDto getRecommendedPlaylist(@PathVariable int userId) {
         return playlistService.createRecommendedPlaylist(userId);
     }
 

@@ -65,4 +65,11 @@ public class GlobalExceptionHandler {
         return e.getMessage();
     }
 
+    @ResponseBody
+    @ExceptionHandler(GenreNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleGenreNotFound(GenreNotFoundException e) {
+        return e.getMessage();
+    }
+
 }

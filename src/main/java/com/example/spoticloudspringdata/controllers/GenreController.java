@@ -22,20 +22,6 @@ public class GenreController {
     }
 
 
-
-//    @GetMapping
-//    public Map<String, String> getAll() {
-//        Map<String, String> response = new HashMap<>();
-//
-//        List<Genre> genres = genreService.getAllGenres();
-//        for (Genre genre : genres) {
-//            if (genre.getParentGenre() != null) {
-//                response.put(genre.getName(), genre.getParentGenre().getName());
-//            } else {
-//                response.put(genre.getName(), "null");
-//            }        }
-//        return response;
-//    }
     @GetMapping
     public List<GenreDto> getAllGenres() {
         return genreService.getAllGenres();

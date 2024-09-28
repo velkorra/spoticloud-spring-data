@@ -107,9 +107,9 @@ public class User extends BaseEntity implements SoftDeletable {
         return getUserReleases().stream().map(UserRelease::getRelease).collect(Collectors.toSet());
     }
 
-    @Basic(fetch = FetchType.LAZY)
+    @Basic
     @Column(name = "is_deleted", insertable = false)
-    public boolean getDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 

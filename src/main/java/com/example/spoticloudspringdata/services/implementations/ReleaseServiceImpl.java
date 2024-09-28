@@ -26,9 +26,11 @@ public class ReleaseServiceImpl implements ReleaseService {
         return releaseRepository.findAll().stream().map(ReleaseDto::new).toList();
     }
 
+    @Override
     public List<ReleaseWithTracksDto> getAllReleasesWithTracks() {
         return releaseRepository.findAll().stream().map(ReleaseWithTracksDto::new).toList();
     }
+    @Override
     public List<TrackDto> getAllTracks(Integer releaseId) {
         Release release = releaseRepository.findById(releaseId).orElseThrow(
                 () -> new ReleaseNotFoundException(releaseId)

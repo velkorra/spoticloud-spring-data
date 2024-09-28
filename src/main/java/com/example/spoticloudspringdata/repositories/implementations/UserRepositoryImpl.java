@@ -37,10 +37,16 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> findByUsername(String username) {
-        return entityManager.createQuery("select u from User u where u.deleted = false and u.username = :username", User.class)
-                .setParameter("username", username)
-                .getResultList();
+    public Optional<User> findByUsername(String username) {
+        try {
+            User user = entityManager.createQuery("select u from User u where u.deleted = false and u.username = :username", User.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+            return Optional.of(user);
+        }
+        catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -57,9 +63,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean existsByEmail(String email) {
-        return !entityManager.createQuery("select u from User u where u.deleted = false and u.email = :email", User.class)
-                .setParameter("email", email)
-                .getResultList()
-                .isEmpty();
+        try {
+            Long count = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.deleted = false AND u.email = :email", Long.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+            return count > 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

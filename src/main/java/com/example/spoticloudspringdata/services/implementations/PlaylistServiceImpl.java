@@ -35,14 +35,17 @@ public class PlaylistServiceImpl implements PlaylistService {
         this.playlistTokenRepository = playlistTokenRepository;
     }
 
+    @Override
     public List<PlaylistDto> getAllPlaylists() {
         return playlistRepository.findAll().stream().map(PlaylistDto::new).collect(Collectors.toList());
     }
 
+    @Override
     public Set<PlaylistDto> ownPlaylists(int userId) {
         return playlistRepository.userCreatedPlaylists(userId).stream().map(PlaylistDto::new).collect(Collectors.toSet());
     }
 
+    @Override
     public void createPlaylist(PlaylistCreateDto playlistCreateDto) {
         User user = userRepository.findById(playlistCreateDto.getOwner()).orElseThrow(
                 () -> new UserNotFoundException(playlistCreateDto.getOwner())
@@ -54,6 +57,8 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlistRepository.save(playlist);
     }
 
+    @Override
+    @Transactional
     public void addTrackToPlaylist(int playlistId, int trackId) {
         Playlist playlist = playlistRepository.findById(playlistId).orElseThrow(
                 () -> new PlaylistNotFoundException(playlistId)
@@ -64,11 +69,14 @@ public class PlaylistServiceImpl implements PlaylistService {
         addTrackToPlaylist(playlist, track);
     }
 
+    @Override
+    @Transactional
     public void addTrackToPlaylist(Playlist playlist, Track track) {
         playlist.addTrack(track);
         playlistRepository.save(playlist);
     }
 
+    @Override
     @Transactional
     public void addTrackSetToPlaylist(Playlist playlist, List<Track> tracks) {
         for (Track track : tracks) {
@@ -76,6 +84,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         }
     }
 
+    @Override
     @Transactional
     public PlaylistDto createRecommendedPlaylist(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
@@ -86,6 +95,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         return new PlaylistDto(playlist);
     }
 
+    @Override
     public Set<PlaylistDto> getUserPlaylists(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -95,6 +105,7 @@ public class PlaylistServiceImpl implements PlaylistService {
                 .map(PlaylistDto::new).collect(Collectors.toSet());
     }
 
+    @Override
     public void makePublic(int playlistId) {
         Playlist playlist = playlistRepository.findById(playlistId).orElseThrow(
                 () -> new PlaylistNotFoundException(playlistId)
@@ -103,6 +114,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlistRepository.save(playlist);
     }
 
+    @Override
     public void makePrivate(int playlistId) {
         Playlist playlist = playlistRepository.findById(playlistId).orElseThrow(
                 () -> new PlaylistNotFoundException(playlistId)
@@ -111,6 +123,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlistRepository.save(playlist);
     }
 
+    @Override
     public String sharePlaylist(int playlistId) {
         Playlist playlist = playlistRepository.findById(playlistId).orElseThrow(
                 () -> new PlaylistNotFoundException(playlistId)
@@ -124,6 +137,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         return playlistToken.getToken();
     }
 
+    @Override
     public Playlist getPlaylistByToken(String token) {
         PlaylistToken playlistToken = playlistTokenRepository.findByToken(token).orElseThrow(
                 () -> new TokenNotFoundException(token)
@@ -131,6 +145,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         return playlistToken.getPlaylist();
     }
 
+    @Override
     public PlaylistDto savePrivatePlaylist(int userId, String token) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -144,6 +159,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         return new PlaylistDto(playlist);
     }
 
+    @Override
     public void addPlaylist(int userId, int playlistId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -164,6 +180,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         }
     }
 
+    @Override
     @Transactional
     public Playlist savePlaylist(Playlist playlist) {
         return playlistRepository.save(playlist);

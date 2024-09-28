@@ -34,12 +34,11 @@ public class UserServiceImpl implements UserService {
         this.recommendationService = recommendationService;
     }
 
-
     public List<UserDto> getUsers() {
         return userRepository.findAll().stream().map(UserDto::new).toList();
     }
 
-
+    @Transactional
     public Track listen(int userId, int trackId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -70,6 +69,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
     public List<TrackDto> getLikedTracks(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -77,18 +77,28 @@ public class UserServiceImpl implements UserService {
         return user.getLikedTracks().stream().map(LikedTracks::getTrack).map(TrackDto::new).toList();
     }
 
+    @Override
     public UserDto getById(int id) {
-        return userRepository.findById(id).map(UserDto::new).orElse(null);
+        return userRepository.findById(id).map(UserDto::new).orElseThrow(
+                () -> new UserNotFoundException(id)
+        );
     }
 
-    public List<UserDto> getByUsername(String username) {
-        return userRepository.findByUsername(username).stream().map(UserDto::new).toList();
+    @Override
+    public UserDto getByUsername(String username) {
+        return userRepository.findByUsername(username).map(UserDto::new).orElseThrow(
+                () -> new UserNotFoundException(username)
+        );
     }
 
-    public UserDto getByEmail(String email) {
-        return userRepository.findByEmail(email).map(UserDto::new).orElse(null);
+    @Override
+    public  UserDto getByEmail(String email) {
+        return userRepository.findByEmail(email).map(UserDto::new).orElseThrow(
+                () -> new UserNotFoundException(email)
+        );
     }
 
+    @Transactional
     public UserDto createUser(UserCreateDto user) {
         if (!userRepository.existsByEmail(user.getEmail())) {
             User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword());
@@ -97,6 +107,7 @@ public class UserServiceImpl implements UserService {
         throw new EmailAlreadyRegistered(user.getEmail());
     }
 
+    @Override
     public List<HistoryRecordDto> history(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -104,11 +115,14 @@ public class UserServiceImpl implements UserService {
         return user.getListenedTracks().stream().map(HistoryRecordDto::new).collect(Collectors.toList());
     }
 
+    @Override
     public void deleteUser(User user) {
         user.setDeleted(true);
         userRepository.save(user);
     }
 
+    @Override
+    @Transactional
     public void deleteUserById(int id) {
         User user = userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException(id)
@@ -116,5 +130,4 @@ public class UserServiceImpl implements UserService {
         user.setDeleted(true);
         userRepository.save(user);
     }
-
 }

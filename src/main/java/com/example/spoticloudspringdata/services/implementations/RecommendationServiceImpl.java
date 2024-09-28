@@ -24,6 +24,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         this.trackRepository = trackRepository;
     }
 
+    @Override
     public void adjustPreferences(User user, Track track, float value) {
         Set<UserPreferences> userPreferences = user.getUserPreferences();
         Set<Genre> genres = track.getTags();
@@ -40,6 +41,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         }
     }
 
+    @Override
     public Track recommendTrack(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -47,6 +49,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         return recommendTrack(user);
     }
 
+    @Override
     public Track recommendTrack(User user) {
         Random random = new Random();
 
@@ -73,6 +76,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         return potentialTracks.get(random.nextInt(potentialTracks.size()));
     }
 
+    @Override
     @Transactional
     public Playlist recommendPlaylist(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
@@ -89,6 +93,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         return playlist;
     }
 
+    @Override
     @Transactional
     public List<Track> recommendTracks(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
@@ -97,6 +102,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         return recommendTracks(user);
     }
 
+    @Override
     @Transactional
     public List<Track> recommendTracks(User user) {
         int numberOfTracks = 10;

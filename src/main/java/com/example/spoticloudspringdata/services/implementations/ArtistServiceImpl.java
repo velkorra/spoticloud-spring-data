@@ -22,9 +22,12 @@ public class ArtistServiceImpl implements ArtistService {
         this.genreRepository = genreRepository;
     }
 
+    @Override
     public List<ArtistDto> getAllArtists() {
         return artistRepository.findAll().stream().map(ArtistDto::new).toList();
     }
+
+    @Override
     public Artist createArtist(ArtistDto artist) {
         Artist newArtist = new Artist(artist.getName(), artist.getType(), artist.getDescription(), artist.getCountry());
         Genre genre = genreRepository.findByName(artist.getGenre()).orElseThrow(

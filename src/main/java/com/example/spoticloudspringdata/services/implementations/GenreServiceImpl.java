@@ -19,11 +19,14 @@ public class GenreServiceImpl implements GenreService {
         this.genreRepository = genreRepository;
     }
 
+    @Override
     public Genre findByName(String name) {
         return genreRepository.findByName(name).orElseThrow(
                 () -> new GenreNotFoundException(name)
         );
     }
+
+    @Override
     public List<GenreDto> getAllGenres() {
         return genreRepository.findAll().stream().map(GenreDto::new).toList();
     }

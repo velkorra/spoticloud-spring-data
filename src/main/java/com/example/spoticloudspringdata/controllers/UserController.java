@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public List<UserDto> getUser(@PathVariable String username) {
+    public UserDto getUser(@PathVariable String username) {
         return userService.getByUsername(username);
     }
 
@@ -71,6 +71,11 @@ public class UserController {
     @GetMapping("/recommended-playlist/{userId}")
     public PlaylistDto getRecommendedPlaylist(@PathVariable int userId) {
         return playlistService.createRecommendedPlaylist(userId);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        userService.deleteUserById(id);
     }
 
 }

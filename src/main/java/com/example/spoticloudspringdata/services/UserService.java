@@ -19,7 +19,7 @@ public interface UserService {
 
     UserDto getByEmail(String email);
 
-    List<UserDto> getByUsername(String username);
+    UserDto getByUsername(String username);
 
     UserDto createUser(UserCreateDto userDto);
 

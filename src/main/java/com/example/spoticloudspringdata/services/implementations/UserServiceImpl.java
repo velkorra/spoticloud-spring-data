@@ -1,7 +1,6 @@
 package com.example.spoticloudspringdata.services.implementations;
 
 import com.example.spoticloudspringdata.entities.LikedTracks;
-import com.example.spoticloudspringdata.entities.Playlist;
 import com.example.spoticloudspringdata.entities.Track;
 import com.example.spoticloudspringdata.entities.User;
 import com.example.spoticloudspringdata.exceptions.EmailAlreadyRegistered;
@@ -10,7 +9,7 @@ import com.example.spoticloudspringdata.exceptions.TrackNotFoundException;
 import com.example.spoticloudspringdata.exceptions.UserNotFoundException;
 import com.example.spoticloudspringdata.repositories.TrackRepository;
 import com.example.spoticloudspringdata.repositories.UserRepository;
-import com.example.spoticloudspringdata.schemas.*;
+import com.example.spoticloudspringdata.dto.*;
 import com.example.spoticloudspringdata.services.RecommendationService;
 import com.example.spoticloudspringdata.services.UserService;
 import jakarta.transaction.Transactional;
@@ -92,7 +91,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public  UserDto getByEmail(String email) {
+    public UserDto getByEmail(String email) {
         return userRepository.findByEmail(email).map(UserDto::new).orElseThrow(
                 () -> new UserNotFoundException(email)
         );
@@ -113,21 +112,5 @@ public class UserServiceImpl implements UserService {
                 () -> new UserNotFoundException(userId)
         );
         return user.getListenedTracks().stream().map(HistoryRecordDto::new).collect(Collectors.toList());
-    }
-
-    @Override
-    public void deleteUser(User user) {
-        user.setDeleted(true);
-        userRepository.save(user);
-    }
-
-    @Override
-    @Transactional
-    public void deleteUserById(int id) {
-        User user = userRepository.findById(id).orElseThrow(
-                () -> new UserNotFoundException(id)
-        );
-        user.setDeleted(true);
-        userRepository.save(user);
     }
 }

@@ -33,13 +33,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return entityManager.createQuery("select u from User u where u.deleted = false", User.class).getResultList();
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
     public Optional<User> findByUsername(String username) {
         try {
-            User user = entityManager.createQuery("select u from User u where u.deleted = false and u.username = :username", User.class)
+            User user = entityManager.createQuery("select u from User u where u.username = :username", User.class)
                     .setParameter("username", username)
                     .getSingleResult();
             return Optional.of(user);
@@ -52,7 +52,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findByEmail(String email) {
         try {
-            User user = entityManager.createQuery("select u from User u where u.deleted = false and u.email = :email", User.class)
+            User user = entityManager.createQuery("select u from User u where u.email = :email", User.class)
                     .setParameter("email", email)
                     .getSingleResult();
             return Optional.of(user);
@@ -64,7 +64,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean existsByEmail(String email) {
         try {
-            Long count = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.deleted = false AND u.email = :email", Long.class)
+            Long count = entityManager.createQuery("SELECT COUNT(u) FROM User u where u.email = :email", Long.class)
                     .setParameter("email", email)
                     .getSingleResult();
             return count > 0;

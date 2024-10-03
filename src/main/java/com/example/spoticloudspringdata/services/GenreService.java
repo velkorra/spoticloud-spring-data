@@ -1,7 +1,7 @@
 package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.Genre;
-import com.example.spoticloudspringdata.schemas.GenreDto;
+import com.example.spoticloudspringdata.dto.GenreDto;
 
 import java.util.List;
 

@@ -1,9 +1,5 @@
-package com.example.spoticloudspringdata.schemas;
+package com.example.spoticloudspringdata.dto;
 
-
-import com.example.spoticloudspringdata.entities.User;
-
-import java.sql.Timestamp;
 
 public class PlaylistCreateDto {
     private String name;

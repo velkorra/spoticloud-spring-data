@@ -1,15 +1,12 @@
 package com.example.spoticloudspringdata.controllers;
 
 import com.example.spoticloudspringdata.entities.Genre;
-import com.example.spoticloudspringdata.schemas.GenreDto;
+import com.example.spoticloudspringdata.dto.GenreDto;
 import com.example.spoticloudspringdata.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/genres")

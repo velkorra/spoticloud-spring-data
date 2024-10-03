@@ -3,7 +3,7 @@ package com.example.spoticloudspringdata.services.implementations;
 import com.example.spoticloudspringdata.entities.Genre;
 import com.example.spoticloudspringdata.exceptions.GenreNotFoundException;
 import com.example.spoticloudspringdata.repositories.GenreRepository;
-import com.example.spoticloudspringdata.schemas.GenreDto;
+import com.example.spoticloudspringdata.dto.GenreDto;
 import com.example.spoticloudspringdata.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

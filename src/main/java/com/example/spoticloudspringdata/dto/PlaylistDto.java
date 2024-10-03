@@ -1,7 +1,6 @@
-package com.example.spoticloudspringdata.schemas;
+package com.example.spoticloudspringdata.dto;
 
 import com.example.spoticloudspringdata.entities.Playlist;
-import com.example.spoticloudspringdata.entities.User;
 
 import java.sql.Timestamp;
 import java.util.List;

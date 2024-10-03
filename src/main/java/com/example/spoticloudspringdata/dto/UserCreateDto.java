@@ -1,4 +1,4 @@
-package com.example.spoticloudspringdata.schemas;
+package com.example.spoticloudspringdata.dto;
 
 
 public class UserCreateDto {

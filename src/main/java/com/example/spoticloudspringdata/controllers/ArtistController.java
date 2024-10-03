@@ -1,7 +1,7 @@
 package com.example.spoticloudspringdata.controllers;
 
 import com.example.spoticloudspringdata.entities.Artist;
-import com.example.spoticloudspringdata.schemas.ArtistDto;
+import com.example.spoticloudspringdata.dto.ArtistDto;
 import com.example.spoticloudspringdata.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

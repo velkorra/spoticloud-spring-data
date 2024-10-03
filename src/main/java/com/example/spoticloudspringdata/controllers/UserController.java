@@ -1,13 +1,12 @@
 package com.example.spoticloudspringdata.controllers;
 
-import com.example.spoticloudspringdata.schemas.*;
+import com.example.spoticloudspringdata.dto.*;
 import com.example.spoticloudspringdata.services.PlaylistService;
 import com.example.spoticloudspringdata.services.RecommendationService;
 import com.example.spoticloudspringdata.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -73,9 +72,5 @@ public class UserController {
         return playlistService.createRecommendedPlaylist(userId);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
-        userService.deleteUserById(id);
-    }
 
 }

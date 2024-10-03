@@ -1,8 +1,7 @@
 package com.example.spoticloudspringdata.controllers;
 
-import com.example.spoticloudspringdata.entities.Playlist;
-import com.example.spoticloudspringdata.schemas.PlaylistCreateDto;
-import com.example.spoticloudspringdata.schemas.PlaylistDto;
+import com.example.spoticloudspringdata.dto.PlaylistCreateDto;
+import com.example.spoticloudspringdata.dto.PlaylistDto;
 import com.example.spoticloudspringdata.services.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

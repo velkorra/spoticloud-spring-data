@@ -2,7 +2,7 @@ package com.example.spoticloudspringdata.services.implementations;
 
 
 import com.example.spoticloudspringdata.repositories.TrackRepository;
-import com.example.spoticloudspringdata.schemas.TrackDto;
+import com.example.spoticloudspringdata.dto.TrackDto;
 import com.example.spoticloudspringdata.services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

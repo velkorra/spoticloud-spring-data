@@ -1,8 +1,8 @@
 package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.*;
-import com.example.spoticloudspringdata.schemas.PlaylistCreateDto;
-import com.example.spoticloudspringdata.schemas.PlaylistDto;
+import com.example.spoticloudspringdata.dto.PlaylistCreateDto;
+import com.example.spoticloudspringdata.dto.PlaylistDto;
 
 import java.util.List;
 import java.util.Set;

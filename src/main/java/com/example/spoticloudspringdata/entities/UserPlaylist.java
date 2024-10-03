@@ -43,7 +43,7 @@ public class UserPlaylist {
     public void setDateAdded(Timestamp dateAdded) {
         this.dateAdded = dateAdded;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     public User getUser() {
@@ -54,7 +54,7 @@ public class UserPlaylist {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("playlistId")
     @JoinColumn(name = "playlist_id", referencedColumnName = "id")
     public Playlist getPlaylist() {

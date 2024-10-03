@@ -1,7 +1,7 @@
 package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.Artist;
-import com.example.spoticloudspringdata.schemas.ArtistDto;
+import com.example.spoticloudspringdata.dto.ArtistDto;
 
 import java.util.List;
 

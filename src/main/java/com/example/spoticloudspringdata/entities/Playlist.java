@@ -72,7 +72,7 @@ public class Playlist extends BaseEntity {
         return tracks.stream().map(TrackPlaylist::getTrack).toList();
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     public User getOwner() {
         return owner;

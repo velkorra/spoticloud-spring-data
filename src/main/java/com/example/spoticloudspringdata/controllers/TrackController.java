@@ -1,6 +1,6 @@
 package com.example.spoticloudspringdata.controllers;
 
-import com.example.spoticloudspringdata.schemas.TrackDto;
+import com.example.spoticloudspringdata.dto.TrackDto;
 import com.example.spoticloudspringdata.services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ public class TrackController {
     public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
+
     @GetMapping
     public List<TrackDto> getTracks() {
         return trackService.findAll();

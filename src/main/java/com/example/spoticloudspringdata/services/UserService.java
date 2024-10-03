@@ -1,8 +1,7 @@
 package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.Track;
-import com.example.spoticloudspringdata.entities.User;
-import com.example.spoticloudspringdata.schemas.*;
+import com.example.spoticloudspringdata.dto.*;
 
 import java.util.List;
 
@@ -25,7 +24,4 @@ public interface UserService {
 
     List<HistoryRecordDto> history(int userId);
 
-    void deleteUser(User user);
-
-    void deleteUserById(int id);
 }

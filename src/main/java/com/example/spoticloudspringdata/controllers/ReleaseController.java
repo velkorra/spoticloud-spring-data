@@ -1,9 +1,9 @@
 package com.example.spoticloudspringdata.controllers;
 
 
-import com.example.spoticloudspringdata.schemas.ReleaseDto;
-import com.example.spoticloudspringdata.schemas.ReleaseWithTracksDto;
-import com.example.spoticloudspringdata.schemas.TrackDto;
+import com.example.spoticloudspringdata.dto.ReleaseDto;
+import com.example.spoticloudspringdata.dto.ReleaseWithTracksDto;
+import com.example.spoticloudspringdata.dto.TrackDto;
 import com.example.spoticloudspringdata.services.ReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/releases")

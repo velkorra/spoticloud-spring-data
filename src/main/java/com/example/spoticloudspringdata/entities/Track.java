@@ -76,7 +76,7 @@ public class Track extends BaseEntity {
         this.artist = artist;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "release_id", referencedColumnName = "id")
     public Release getRelease() {
         return release;

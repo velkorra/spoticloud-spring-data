@@ -11,12 +11,11 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity implements SoftDeletable {
+public class User extends BaseEntity {
     private String username;
     private String email;
     private String password;
     private Timestamp dateRegistered;
-    private Boolean isDeleted;
     private Set<UserPlaylist> userPlaylists;
     private Set<UserRelease> userReleases;
     private Set<UserPreferences> userPreferences;
@@ -107,15 +106,6 @@ public class User extends BaseEntity implements SoftDeletable {
         return getUserReleases().stream().map(UserRelease::getRelease).collect(Collectors.toSet());
     }
 
-    @Basic
-    @Column(name = "is_deleted", insertable = false)
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
-    }
 
     @OneToMany(mappedBy = "owner")
     public Set<Playlist> getCreatedPlaylists() {
@@ -132,7 +122,7 @@ public class User extends BaseEntity implements SoftDeletable {
     }
 
     @Transient
-    public List<Track> getListenedTracks(){
+    public List<Track> getListenedTracks() {
         return getListeningHistory().stream().sorted(Comparator.comparing(ListeningHistory::getDateListened).reversed()).map(ListeningHistory::getTrack).collect(Collectors.toList());
     }
 
@@ -145,7 +135,7 @@ public class User extends BaseEntity implements SoftDeletable {
 
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     public List<LikedTracks> getLikedTracks() {
         return likedTracks;
     }
@@ -159,7 +149,7 @@ public class User extends BaseEntity implements SoftDeletable {
         this.likedTracks = likedTracks;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     public Set<PlaylistAccess> getAccessedPlaylists() {
         return accessedPlaylists;
     }
@@ -179,11 +169,5 @@ public class User extends BaseEntity implements SoftDeletable {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, email, password, dateRegistered);
-    }
-
-    @Transient
-    @Override
-    public boolean isDeleted() {
-        return isDeleted;
     }
 }

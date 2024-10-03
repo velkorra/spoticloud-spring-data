@@ -24,7 +24,7 @@ public class UserPreferences {
 
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     public User getUser() {
@@ -35,7 +35,7 @@ public class UserPreferences {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("genreId")
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     public Genre getGenre() {

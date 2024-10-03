@@ -1,6 +1,6 @@
 package com.example.spoticloudspringdata.services;
 
-import com.example.spoticloudspringdata.schemas.TrackDto;
+import com.example.spoticloudspringdata.dto.TrackDto;
 
 import java.util.List;
 

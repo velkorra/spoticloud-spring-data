@@ -6,13 +6,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "artist")
-public class Artist extends BaseEntity implements SoftDeletable{
+public class Artist extends BaseEntity{
     private String name;
     private String type;
     private String description;
     private String country;
     private Genre genre;
-    private boolean isDeleted = Boolean.FALSE;
     private Set<ReleaseArtist> releaseArtists;
     private Set<Track> tracks;
 
@@ -97,21 +96,9 @@ public class Artist extends BaseEntity implements SoftDeletable{
     }
 
 
-    @Column(name = "is_deleted", insertable = false)
-    public boolean getDeleted(){
-    return isDeleted;}
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
 
     public void setReleaseArtists(Set<ReleaseArtist> releaseArtists) {
         this.releaseArtists = releaseArtists;
     }
 
-    @Transient
-    @Override
-    public boolean isDeleted() {
-        return isDeleted;
-    }
 }

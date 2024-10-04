@@ -135,7 +135,7 @@ public class User extends BaseEntity {
 
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public List<LikedTracks> getLikedTracks() {
         return likedTracks;
     }

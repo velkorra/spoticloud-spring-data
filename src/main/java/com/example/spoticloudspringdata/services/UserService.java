@@ -10,7 +10,7 @@ public interface UserService {
 
     UserDto getById(int id);
 
-    Track listen(int user, int track);
+    TrackDto listen(int user, int track);
 
     List<TrackDto> getLikedTracks(int userId);
 

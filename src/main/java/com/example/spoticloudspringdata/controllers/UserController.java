@@ -4,6 +4,7 @@ import com.example.spoticloudspringdata.dto.*;
 import com.example.spoticloudspringdata.services.PlaylistService;
 import com.example.spoticloudspringdata.services.RecommendationService;
 import com.example.spoticloudspringdata.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class UserController {
 
     @PostMapping("/listen/{user}/{track}")
     public TrackDto listen(@PathVariable("user") int user, @PathVariable("track") int track) {
-        return new TrackDto(userService.listen(user, track));
+        return userService.listen(user, track);
     }
 
     @GetMapping("/history/{userId}")
@@ -42,6 +43,7 @@ public class UserController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@RequestBody UserCreateDto user) {
         return userService.createUser(user);
     }
@@ -71,6 +73,4 @@ public class UserController {
     public PlaylistDto getRecommendedPlaylist(@PathVariable int userId) {
         return playlistService.createRecommendedPlaylist(userId);
     }
-
-
 }

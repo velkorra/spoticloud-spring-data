@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Repository
-public interface TrackRepository{
+public interface TrackRepository {
     Track save(Track track);
+
     Optional<Track> findById(int id);
+
     List<Track> findAll();
 }

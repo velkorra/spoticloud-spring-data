@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public Track listen(int userId, int trackId) {
+    public TrackDto listen(int userId, int trackId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
         );
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         user.addListeningHistory(track);
         recommendationService.adjustPreferences(user, track, 0.01f);
         userRepository.save(user);
-        return recommendationService.recommendTrack(user);
+        return new TrackDto(recommendationService.recommendTrack(user));
     }
 
     @Transactional
@@ -97,6 +97,7 @@ public class UserServiceImpl implements UserService {
         );
     }
 
+    @Override
     @Transactional
     public UserDto createUser(UserCreateDto user) {
         if (!userRepository.existsByEmail(user.getEmail())) {

@@ -8,6 +8,8 @@ import com.example.spoticloudspringdata.repositories.ArtistRepository;
 import com.example.spoticloudspringdata.repositories.GenreRepository;
 import com.example.spoticloudspringdata.dto.ArtistDto;
 import com.example.spoticloudspringdata.services.ArtistService;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
+    @Transactional
     public Artist createArtist(ArtistDto artist) {
         Artist newArtist = new Artist(artist.getName(), artist.getType(), artist.getDescription(), artist.getCountry());
         Genre genre = genreRepository.findByName(artist.getGenre()).orElseThrow(

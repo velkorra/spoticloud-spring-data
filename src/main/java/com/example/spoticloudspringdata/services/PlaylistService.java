@@ -36,6 +36,4 @@ public interface PlaylistService {
 
     void addPlaylist(int userId, int playlistId);
 
-    Playlist savePlaylist(Playlist playlist);
-
 }

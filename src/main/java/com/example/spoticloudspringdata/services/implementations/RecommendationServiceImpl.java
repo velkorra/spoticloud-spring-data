@@ -77,7 +77,6 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    @Transactional
     public Playlist recommendPlaylist(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -94,7 +93,6 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    @Transactional
     public List<Track> recommendTracks(int userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(userId)
@@ -103,7 +101,6 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    @Transactional
     public List<Track> recommendTracks(User user) {
         int numberOfTracks = 10;
         Random random = new Random();

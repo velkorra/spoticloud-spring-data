@@ -6,11 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
-public interface PlaylistTokenRepository{
+public interface PlaylistTokenRepository {
     PlaylistToken save(PlaylistToken playlistToken);
-    Optional<PlaylistToken> findByToken(String token);
 
+    Optional<PlaylistToken> findByToken(String token);
 }
 
 
